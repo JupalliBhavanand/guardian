@@ -1,0 +1,196 @@
+{% extends 'partials/base.html' %}
+{% block title %} index page {% endblock %}
+{% load static %}
+
+{% block content %}
+<main>
+  <article>
+
+    <!-- HERO -->
+    <section id="home" class="section hero has-bg-image" aria-label="home" style="background-image: url('{% static 'images/hero-bg.jpg' %}')">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="h1 hero-title">Welcome to Guardian Tech</h1>
+          <p class="hero-text">
+            We are a leading IT consultancy firm dedicated to delivering innovative technology solutions to businesses of all sizes.
+          </p>
+          <div class="btn-wrapper">
+            <a href="#" class="btn btn-primary">Explore Now</a>
+            <a href="contactUs.html" class="btn btn-outline">Contact Us</a>
+          </div>
+        </div>
+        <div class="hero-slider" data-slider>
+          <div class="slider-inner">
+            <ul class="slider-container" data-slider-container>
+              <li class="slider-item">
+                <figure class="img-holder" style="--width: 575; --height: 550;">
+                  <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="575" height="550" alt="" class="img-cover">
+                </figure>
+              </li>
+              <li class="slider-item">
+                <div class="hero-card">
+                  <figure class="img-holder" style="--width: 575; --height: 550;">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="575" height="550" alt="hero banner" class="img-cover">
+                  </figure>
+                </div>
+              </li>
+              <li class="slider-item">
+                <figure class="img-holder" style="--width: 575; --height: 550;">
+                  <img src="{% static 'images/hero-slide-3.jpg' %}" width="575" height="550" alt="" class="img-cover">
+                </figure>
+              </li>
+            </ul>
+          </div>
+          <button class="slider-btn prev" aria-label="slide to previous" data-slider-prev>
+            <ion-icon name="arrow-back"></ion-icon>
+          </button>
+          <button class="slider-btn next" aria-label="slide to next" data-slider-next>
+            <ion-icon name="arrow-forward"></ion-icon>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about" aria-labelledby="about-label">
+      <div class="container">
+        <figure class="about-banner">
+          <img src="{% static 'images/about-banner.png' %}" width="800" height="580" loading="lazy" alt="about banner" class="w-100">
+        </figure>
+        <div class="about-content">
+          <p class="section-subtitle" id="about-label">Why Choose Us?</p>
+          <h2 class="h2 section-title">
+            We bring solutions to make life easier for our clients.
+          </h2>
+          <ul>
+            <li class="about-item">
+              <div class="accordion-card expanded" data-accordion>
+                <h3 class="card-title">
+                  <button class="accordion-btn" data-accordion-btn>
+                    <ion-icon name="chevron-down-outline" aria-hidden="true" class="down"></ion-icon>
+                    <span class="span h5">Professional Design</span>
+                  </button>
+                </h3>
+                <p class="accordion-content">
+                  Smooth transitions enhance the flow, with the course content organized in a way that highlights key points. This structure ensures that the material is both engaging and easy to follow. Additionally, well-placed visual aids and interactive elements support comprehension and retention.
+                </p>
+              </div>
+            </li>
+            <li class="about-item">
+              <div class="accordion-card" data-accordion>
+                <h3 class="card-title">
+                  <button class="accordion-btn" data-accordion-btn>
+                    <ion-icon name="chevron-down-outline" aria-hidden="true" class="down"></ion-icon>
+                    <span class="span h5">Top-Notch Support</spna>
+                  </button>
+                </h3>
+                <p class="accordion-content">
+                  Enjoy seamless support with our services. Our team ensures that every issue is addressed promptly and effectively, ensuring your experience is smooth and hassle-free. We are dedicated to providing exceptional support, ensuring you have the assistance you need when you need it.
+                </p>
+              </div>
+            </li>
+            <li class="about-item">
+              <div class="accordion-card" data-accordion>
+                <h3 class="card-title">
+                  <button class="accordion-btn" data-accordion-btn>
+                    <ion-icon name="chevron-down-outline" aria-hidden="true" class="down"></ion-icon>
+                    <span class="span h5">Exclusive Assets</span>
+                  </button>
+                </h3>
+                <p class="accordion-content">
+                  Enjoy access to our exclusive assets, carefully curated to provide you with top-quality resources. Our assets are designed to enhance your experience and ensure you have everything you need to succeed. We take pride in offering unique and valuable resources that set us apart.
+                </p>
+              </div>
+            </li>
+            <li class="about-item">
+              <div class="accordion-card" data-accordion>
+                <h3 class="card-title">
+                  <button class="accordion-btn" data-accordion-btn>
+                    <ion-icon name="chevron-down-outline" aria-hidden="true" class="down"></ion-icon>
+                    <span class="span h5">Knowledgeable Team</span>
+                  </button>
+                </h3>
+                <p class="accordion-content">
+                  Our team is composed of highly knowledgeable professionals with extensive experience in their respective fields. This expertise ensures that we provide top-quality services and solutions tailored to your specific needs. Trust in our team's knowledge to drive your project to success.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section service" aria-labelledby="service-label">
+      <div class="container">
+        <p class="section-subtitle" id="service-label">What We Do?</p>
+        <h2 class="h2 section-title">
+          The service we offer is specifically designed to meet your needs.
+        </h2>
+        <ul class="grid-list">
+          <li>
+            <div class="service-card">
+              <div class="card-icon">
+                <ion-icon name="stats-chart-outline"></ion-icon>
+              </div>
+              <h3 class="h4 card-title">Operations & Growth</h3>
+              <p class="card-text">
+                We provide comprehensive IT strategy development and implementation to streamline your operations and drive growth.
+              </p>
+              <a href="#" class="btn-text">
+                <span class="span">Learn More</span>
+                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+              </a>
+            </div>
+          </li>
+          <li>
+            <div class="service-card">
+              <div class="card-icon">
+                <ion-icon name="globe-outline"></ion-icon>
+              </div>
+              <h3 class="h4 card-title">Cybersecurity</h3>
+              <p class="card-text">
+                Our cybersecurity services ensure your business is protected against digital threats with the latest security protocols.
+              </p>
+              <a href="#" class="btn-text">
+                <span class="span">Learn More</span>
+                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+              </a>
+            </div>
+          </li>
+          <li>
+            <div class="service-card">
+              <div class="card-icon">
+                <ion-icon name="code-slash-outline"></ion-icon>
+              </div>
+              <h3 class="h4 card-title">Software Development</h3>
+              <p class="card-text">
+                Optimize your business processes with our custom software development tailored to your specific needs.
+              </p>
+              <a href="#" class="btn-text">
+                <span class="span">Learn More</span>
+                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+              </a>
+            </div>
+          </li>
+          <li>
+            <div class="service-card">
+              <div class="card-icon">
+                <ion-icon name="bar-chart-outline"></ion-icon>
+              </div>
+              <h3 class="h4 card-title">IT Consulting</h3>
+              <p class="card-text">
+                Leverage our expert IT consulting services to align your technology strategy with your business goals.
+              </p>
+              <a href="#" class="btn-text">
+                <span class="span">Learn More</span>
+                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+</article>
+</main>
+{% endblock %}

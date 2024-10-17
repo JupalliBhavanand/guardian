@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ request.user.first_name }}'s Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'staff.css' %}">
+</head>
+
+<body>
+
+  <div class="container mt-5">
+    <div class="row">
+      <!-- Profile Section -->
+      <div class="col-md-4">
+        <!-- Profile Information -->
+        <div class="card">
+          <img src="{% if profile.photo %}{{ profile.photo.url }}{% else %}{% static 'default_photo.jpg' %}{% endif %}" alt="Profile Photo" class="card-img-top">
+          <div class="card-body text-center">
+            <h2>{{ request.user.first_name }} {{ request.user.last_name }}</h2>
+            <p>{{ request.user.employee.designation }}</p>
+            <p>At work for: 1 year 3 months 8 days</p>
+            <ul class="list-group">
+              <li class="list-group-item">Attendance: {{ attendance_days }}/{{ total_working_days }}</li>
+              <li class="list-group-item">Leaves: {{ total_leaves }}</li>
+              <li class="list-group-item">Awards: {{ total_awards }}</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Birthdays Section -->
+        <div class="mt-4">
+          <p><strong>Birthdays:</strong></p>
+          <p>Freddie Kemmer has a birthday today</p>
+        </div>
+      </div>
+
+      <!-- Main Content Section -->
+      <div class="col-md-8">
+        <!-- Personal Details -->
+        <div class="card mb-4">
+          <div class="card-header">Personal Details</div>
+          <div class="card-body">
+            <p><strong>Father's Name:</strong> {{ profile.father_name }}</p>
+            <p><strong>Date of Birth:</strong> {{ profile.date_of_birth }}</p>
+            <p><strong>Email:</strong> {{ request.user.email }}</p>
+            <p><strong>Phone:</strong> {{ profile.phone }}</p>
+            <p><strong>Local Address:</strong> {{ profile.local_address }}</p>
+            <p><strong>Permanent Address:</strong> {{ profile.permanent_address }}</p>
+          </div>
+        </div>
+
+        <!-- Company Details -->
+        <a href="{% url 'edit_personal_details' %}" class="btn btn-primary mb-2">Edit Details</a>
+        <div class="card mb-4">
+          <div class="card-header">Company Details</div>
+          <div class="card-body">
+            <p><strong>Employee ID:</strong> 5157</p>
+            <p><strong>Department:</strong> PHP</p>
+            <p><strong>Designation:</strong> Senior PHP Developer</p>
+          </div>
+        </div>
+
+        <!-- Attendance Form -->
+        <div class="card mb-4">
+          <div class="card-header">Submit Attendance</div>
+          <div class="card-body">
+            <form method="post" action="{% url 'submit_attendance' %}">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="attendance">Mark your attendance:</label>
+                <select class="form-control" id="attendance" name="attendance">
+                  <option value="present">Present</option>
+                  <option value="absent">Absent</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary mt-3">Submit</button>
+              <a href="{% url 'attendance' %}" class="btn btn-primary mb-2">check attendance</a>
+
+            </form>
+          </div>
+        </div>
+
+        <!-- Manager-specific actions (Optional) -->
+        {% if is_manager %}
+        <div class="card mb-4">
+          <div class="card-header">Manager Actions</div>
+          <div class="card-body">
+            <a href="{% url 'assign_task' %}" class="btn btn-primary mb-2">Assign Task</a>
+            <a href="{% url 'upload_offer_letter' %}" class="btn btn-primary mb-2">Issue Offer Letter</a>
+            <a href="{% url 'upload_payroll' %}" class="btn btn-primary">Handle Payroll</a>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Assigned Tasks -->
+        <div class="card mb-4">
+          <div class="card-header">Assigned Tasks</div>
+          <div class="card-body">
+            <ul class="list-group">
+              {% for task in tasks %}
+              <li class="list-group-item">{{ task.title }} - Due on {{ task.due_date }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Offer Letters -->
+        <div class="card mb-4">
+          <div class="card-header">Offer Letters</div>
+          <div class="card-body">
+            <ul class="list-group">
+              <h2>View Offer Letter</h2>
+              <p><strong>Offer Details:</strong> {{ offer_letter.offer_details }}</p>
+              <p><strong>Issued By:</strong> {{ offer_letter.issued_by }}</p>
+              <p><strong>Date Issued:</strong> {{ offer_letter.date_issued }}</p>
+              <a href="{{ offer_letter.file.url }}" download>Download Offer Letter</a>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Payrolls -->
+        <div class="card mb-4">
+          <div class="card-header">Payrolls</div>
+          <div class="card-body">
+            <ul class="list-group">
+              {% for payroll in payrolls %}
+              <li class="list-group-item">{{ payroll.date_issued }}: Salary - {{ payroll.salary }}              <a href="{% url 'view_payrolls' %}" class="btn btn-primary">view Payroll</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

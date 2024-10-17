@@ -1,0 +1,9 @@
+
+{% block content %}
+<h2>Issue Offer Letter</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">Issue Offer Letter</button>
+</form>
+{% endblock %}
